@@ -15,40 +15,37 @@ What they should learn next
 🔍 Skill Extraction
 Extracts skills from job descriptions using NLP
 Uses a custom-built skill dictionary
+
 📊 Skill Gap Analysis
 Compares user skills with market demand
 Identifies missing and overlapping skills
+
 📈 Demand Analysis
 Analyzes trends across multiple job listings
 Highlights high-demand technologies
+
 🌐 Job Data Scraping
 Scrapes real-time job listings
 Processes and structures raw job data
+
 ⚙️ Scalable Data Processing
 Uses distributed processing (Spark jobs) for large datasets
+
 🧪 Testing Suite
 Includes unit and integration tests for reliability
+
 🧠 Tech Stack
-
-Frontend
-
 Next.js
 Tailwind CSS
-
 Backend
-
 Python
 Flask
-
 Data & Processing
-
 Apache Spark
 NLP techniques for text processing
-
-Other Tools
-
 Git
 GitHub
+
 🗂️ Project Structure
 job-market-skill-gap-analyzer/
 │
@@ -62,6 +59,7 @@ job-market-skill-gap-analyzer/
 ├── app.py                 # Backend entry point
 ├── requirements.txt       # Dependencies
 └── setup.py               # Project setup
+
 ⚙️ Installation & Setup
 1️⃣ Clone the repository
 git clone https://github.com/divyakatara/SkillGapAnalyser.git
@@ -73,6 +71,7 @@ python -m venv .venv
 pip install -r requirements.txt
 4️⃣ Run the application
 python app.py
+
 🔄 Workflow
 Scrape job data
 Process and clean data
@@ -80,25 +79,30 @@ Extract skills using NLP
 Analyze demand trends
 Compare with user skills
 Generate insights
+
 📊 Example Use Case
 Input: User skills (e.g., Python, SQL)
 System Output:
 Missing skills (e.g., Docker, AWS)
 High-demand skills in market
 Recommendations for improvement
+
 🧪 Running Tests
 pytest tests/
+
 🚀 Future Enhancements
 Personalized learning recommendations
 Resume parsing integration
 Real-time dashboard with visual analytics
 AI-based career path prediction
 Integration with LinkedIn/job APIs
+
 📌 Applications
 Students planning careers
 Job seekers upskilling
 Career counselors
 EdTech platforms
+
 🤝 Contributing
 
 Contributions are welcome!
