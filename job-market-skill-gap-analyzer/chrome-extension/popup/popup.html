@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillScope - Smart Job Assistant</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="logo">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+        </svg>
+        <div>
+          <h1>SkillScope</h1>
+          <p>Smart Job Application Assistant</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="popup-content">
+      <!-- Resume Upload Section -->
+      <section id="upload-section" class="section">
+        <div class="section-header">
+          <h2>📄 Your Resume</h2>
+          <span id="resume-status" class="status-badge">Not uploaded</span>
+        </div>
+        
+        <div id="no-resume" class="empty-state">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          <p>Upload your resume to get started with personalized job analysis</p>
+          <input type="file" id="resume-file" accept=".pdf,.doc,.docx" style="display: none;">
+          <button class="btn-primary" id="upload-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5m0 0L7 8m5-5v12"/>
+            </svg>
+            Upload Resume
+          </button>
+        </div>
+
+        <div id="resume-info" class="resume-info" style="display: none;">
+          <div class="resume-details">
+            <div class="detail-row">
+              <span class="label">Last Updated:</span>
+              <span id="last-updated">-</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Skills Identified:</span>
+              <span id="skill-count" class="badge">0</span>
+            </div>
+          </div>
+          
+          <div class="action-buttons">
+            <button class="btn-secondary" id="view-skills-btn">View Skills</button>
+            <button class="btn-secondary" id="update-resume-btn">Update Resume</button>
+          </div>
+        </div>
+
+        <div id="upload-progress" class="upload-progress" style="display: none;">
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          <p class="progress-text">Uploading and analyzing your resume...</p>
+        </div>
+      </section>
+
+      <!-- Skills Modal -->
+      <div id="skills-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Your Skills</h3>
+            <button class="close-btn" id="close-skills-modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div id="skills-list" class="skills-grid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Section -->
+      <section class="section">
+        <div class="section-header">
+          <h2>⚙️ Settings</h2>
+        </div>
+        
+        <div class="settings-group">
+          <div class="setting-item">
+            <label class="toggle-label">
+              <input type="checkbox" id="auto-analyze" checked>
+              <span class="toggle-slider"></span>
+              <span class="toggle-text">Auto-analyze job postings</span>
+            </label>
+            <p class="setting-description">Automatically analyze jobs when you visit job pages</p>
+          </div>
+
+          <div class="setting-item">
+            <label class="toggle-label">
+              <input type="checkbox" id="show-notifications" checked>
+              <span class="toggle-slider"></span>
+              <span class="toggle-text">Show notifications</span>
+            </label>
+            <p class="setting-description">Get notified when analysis is complete</p>
+          </div>
+
+          <div class="setting-item">
+            <label for="api-url">API Endpoint:</label>
+            <input type="url" id="api-url" placeholder="https://your-api-url.com" class="input-field">
+            <p class="setting-description">Backend API URL for analysis</p>
+          </div>
+        </div>
+
+        <button class="btn-secondary full-width" id="save-settings-btn">Save Settings</button>
+      </section>
+
+      <!-- About Section -->
+      <section class="section">
+        <div class="section-header">
+          <h2>ℹ️ About</h2>
+        </div>
+        
+        <div class="about-content">
+          <p>SkillScope helps you make informed job application decisions by analyzing your resume against job postings in real-time.</p>
+          
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value">5+</div>
+              <div class="stat-label">Job Sites</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">AI</div>
+              <div class="stat-label">Powered</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">100+</div>
+              <div class="stat-label">Skills</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="popup-footer">
+      <p>Made with ❤️ for job seekers</p>
+      <div class="footer-links">
+        <a href="#" id="help-link">Help</a>
+        <span>•</span>
+        <a href="#" id="privacy-link">Privacy</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

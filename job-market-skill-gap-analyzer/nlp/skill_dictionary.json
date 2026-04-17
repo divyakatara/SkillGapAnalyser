@@ -1,0 +1,108 @@
+{
+  "programming_languages": [
+    "Python", "R", "Java", "Scala", "C++", "JavaScript", "Julia",
+    "SQL", "C#", "Go", "Rust", "MATLAB", "SAS"
+  ],
+  "data_science_ml": [
+    "Machine Learning", "Deep Learning", "Neural Networks",
+    "Natural Language Processing", "NLP", "Computer Vision",
+    "Reinforcement Learning", "Transfer Learning",
+    "Supervised Learning", "Unsupervised Learning",
+    "Classification", "Regression", "Clustering",
+    "Dimensionality Reduction", "Feature Engineering",
+    "Model Deployment", "MLOps", "AutoML",
+    "Time Series Analysis", "Forecasting",
+    "Recommendation Systems", "Anomaly Detection",
+    "A/B Testing", "Experimentation",
+    "Statistical Analysis", "Hypothesis Testing",
+    "Bayesian Statistics", "Causal Inference"
+  ],
+  "ml_frameworks": [
+    "TensorFlow", "PyTorch", "Keras", "scikit-learn", "sklearn",
+    "XGBoost", "LightGBM", "CatBoost",
+    "Hugging Face", "Transformers",
+    "BERT", "GPT", "LLM", "Large Language Models",
+    "OpenAI", "LangChain",
+    "spaCy", "NLTK", "Gensim",
+    "OpenCV", "YOLO", "ResNet"
+  ],
+  "big_data": [
+    "Apache Spark", "PySpark", "Spark SQL",
+    "Hadoop", "MapReduce", "HDFS",
+    "Apache Kafka", "Apache Flink",
+    "Apache Hive", "Presto", "Trino",
+    "Databricks", "EMR"
+  ],
+  "databases": [
+    "PostgreSQL", "MySQL", "MongoDB",
+    "Redis", "Cassandra", "DynamoDB",
+    "Elasticsearch", "Neo4j",
+    "Snowflake", "BigQuery", "Redshift",
+    "Oracle", "SQL Server", "MariaDB"
+  ],
+  "cloud_platforms": [
+    "AWS", "Amazon Web Services", "GCP", "Google Cloud Platform",
+    "Azure", "Microsoft Azure",
+    "S3", "EC2", "Lambda", "SageMaker",
+    "Cloud Functions", "Cloud Run",
+    "Azure ML", "Vertex AI"
+  ],
+  "data_engineering": [
+    "ETL", "ELT", "Data Pipeline", "Data Pipelines",
+    "Apache Airflow", "Airflow", "Dagster", "Prefect",
+    "dbt", "Data Build Tool",
+    "Luigi", "Argo Workflows",
+    "Data Warehousing", "Data Lake",
+    "Data Modeling", "Schema Design",
+    "Stream Processing", "Batch Processing",
+    "CDC", "Change Data Capture"
+  ],
+  "data_viz": [
+    "Tableau", "Power BI", "PowerBI",
+    "Looker", "Metabase", "Superset",
+    "Matplotlib", "Seaborn", "Plotly",
+    "D3.js", "ggplot", "Altair",
+    "Data Visualization", "Dashboards"
+  ],
+  "data_tools": [
+    "Pandas", "NumPy", "Polars",
+    "Jupyter", "Jupyter Notebook", "JupyterLab",
+    "Anaconda", "Conda",
+    "Apache Arrow", "Parquet", "Avro"
+  ],
+  "devops_mlops": [
+    "Docker", "Kubernetes", "K8s",
+    "CI/CD", "Jenkins", "GitLab CI", "GitHub Actions",
+    "Terraform", "Ansible",
+    "MLflow", "Kubeflow", "Weights & Biases",
+    "Model Registry", "Feature Store",
+    "Monitoring", "Logging", "Prometheus", "Grafana"
+  ],
+  "version_control": [
+    "Git", "GitHub", "GitLab", "Bitbucket",
+    "Version Control", "Source Control"
+  ],
+  "apis_web": [
+    "REST API", "RESTful", "GraphQL",
+    "FastAPI", "Flask", "Django",
+    "Microservices", "API Design",
+    "HTTP", "JSON", "XML"
+  ],
+  "soft_skills": [
+    "Communication", "Leadership", "Teamwork",
+    "Problem Solving", "Critical Thinking",
+    "Agile", "Scrum", "Jira",
+    "Stakeholder Management",
+    "Technical Writing", "Documentation",
+    "Presentation Skills"
+  ],
+  "other_tools": [
+    "Linux", "Unix", "Bash", "Shell Scripting",
+    "Excel", "Google Sheets",
+    "Regex", "Regular Expressions",
+    "Web Scraping", "Beautiful Soup", "Selenium",
+    "API Integration",
+    "Distributed Systems",
+    "System Design"
+  ]
+}

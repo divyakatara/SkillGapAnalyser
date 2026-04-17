@@ -1,0 +1,83 @@
+name: Package Chrome Extension
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  package:
+    name: Package Extension
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Create icons (placeholder)
+        run: |
+          mkdir -p chrome-extension/icons
+          # In production, you would generate actual icons here
+          # For now, create placeholder files
+          for size in 16 32 48 128; do
+            touch chrome-extension/icons/icon${size}.png
+          done
+      
+      - name: Validate manifest
+        run: |
+          cd chrome-extension
+          if [ ! -f manifest.json ]; then
+            echo "manifest.json not found!"
+            exit 1
+          fi
+          # Validate JSON syntax
+          cat manifest.json | python -m json.tool > /dev/null
+      
+      - name: Package extension
+        run: |
+          cd chrome-extension
+          zip -r ../skillscope-extension.zip . \
+            -x "*.git*" \
+            -x "*node_modules*" \
+            -x "*.DS_Store"
+      
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./skillscope-extension.zip
+          asset_name: skillscope-extension-${{ github.ref_name }}.zip
+          asset_content_type: application/zip
+      
+      - name: Upload to Chrome Web Store (optional)
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          echo "To upload to Chrome Web Store:"
+          echo "1. Visit https://chrome.google.com/webstore/devconsole"
+          echo "2. Upload the skillscope-extension.zip file"
+          echo "3. Fill in store listing details"
+          echo "4. Submit for review"
+          # Automated upload can be done using chrome-webstore-upload-cli
+          # npx chrome-webstore-upload-cli upload --source skillscope-extension.zip \
+          #   --extension-id YOUR_EXTENSION_ID --client-id ${{ secrets.CHROME_CLIENT_ID }} \
+          #   --client-secret ${{ secrets.CHROME_CLIENT_SECRET }} \
+          #   --refresh-token ${{ secrets.CHROME_REFRESH_TOKEN }}

@@ -1,0 +1,474 @@
+/**
+ * Styles for SkillScope Content Script
+ */
+
+/* Analyze Button */
+.skillscope-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  margin: 16px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  z-index: 10000;
+}
+
+.skillscope-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.skillscope-btn svg {
+  flex-shrink: 0;
+}
+
+.skillscope-btn.analyzing {
+  background: #9ca3af;
+  cursor: wait;
+}
+
+/* Spinner Animation */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Analysis Panel */
+.skillscope-panel {
+  position: fixed;
+  top: 20px;
+  right: -420px;
+  width: 400px;
+  max-height: 90vh;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  z-index: 999999;
+  transition: right 0.3s ease;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.skillscope-panel.show {
+  right: 20px;
+}
+
+.skillscope-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.skillscope-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.skillscope-close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+  line-height: 1;
+}
+
+.skillscope-close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.skillscope-panel-content {
+  padding: 20px;
+  max-height: calc(90vh - 72px);
+  overflow-y: auto;
+}
+
+/* Job Info */
+.skillscope-job-info {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.skillscope-job-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.skillscope-job-info p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Match Score */
+.skillscope-match-score {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 12px;
+}
+
+.score-circle {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  position: relative;
+}
+
+.score-circle::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  padding: 4px;
+  background: conic-gradient(from 0deg, var(--score-color) 0%, var(--score-color) var(--score-percentage), #e5e7eb var(--score-percentage), #e5e7eb 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.score-circle.score-high {
+  --score-color: #10b981;
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.score-circle.score-medium {
+  --score-color: #f59e0b;
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.score-circle.score-low {
+  --score-color: #ef4444;
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.score-circle.score-very-low {
+  --score-color: #dc2626;
+  background: #fecaca;
+  color: #7f1d1d;
+}
+
+.score-value {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+.recommendation {
+  flex: 1;
+}
+
+.recommendation strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.recommendation p {
+  margin: 0;
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.recommend-high strong { color: #10b981; }
+.recommend-medium strong { color: #f59e0b; }
+.recommend-low strong { color: #ef4444; }
+.recommend-none strong { color: #dc2626; }
+
+/* Skills Section */
+.skillscope-skills {
+  margin-bottom: 24px;
+}
+
+.skill-section {
+  margin-bottom: 20px;
+}
+
+.skill-section h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.skill-tag.match {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.skill-tag.missing {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Courses Section */
+.skillscope-courses {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #eff6ff;
+  border-radius: 12px;
+}
+
+.skillscope-courses h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e40af;
+}
+
+.skillscope-btn-secondary {
+  width: 100%;
+  padding: 10px 16px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.skillscope-btn-secondary:hover {
+  background: #2563eb;
+}
+
+.skillscope-btn-secondary:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+#course-recommendations {
+  margin-top: 16px;
+}
+
+.course-card {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.course-provider {
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #3b82f6;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.course-card h5 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.course-card p {
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.course-meta {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.course-link {
+  display: inline-block;
+  color: #3b82f6;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.course-link:hover {
+  color: #2563eb;
+}
+
+/* Insights Section */
+.skillscope-insights {
+  padding: 16px;
+  background: #fefce8;
+  border-radius: 12px;
+}
+
+.skillscope-insights h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #854d0e;
+}
+
+.skillscope-insights ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.skillscope-insights li {
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #713f12;
+  line-height: 1.6;
+}
+
+.skillscope-insights li:last-child {
+  margin-bottom: 0;
+}
+
+/* Empty State */
+.skillscope-empty-state {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.skillscope-empty-state svg {
+  color: #d1d5db;
+  margin-bottom: 20px;
+}
+
+.skillscope-empty-state h3 {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.skillscope-empty-state p {
+  margin: 0 0 24px 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.skillscope-btn-primary {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.skillscope-btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+/* Error Toast */
+.skillscope-error {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #dc2626;
+  color: white;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1000000;
+  font-size: 14px;
+  font-weight: 500;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Scrollbar */
+.skillscope-panel-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.skillscope-panel-content::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+.skillscope-panel-content::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.skillscope-panel-content::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}

@@ -1,0 +1,77 @@
+# Application Configuration
+
+app:
+  name: "Job Market Skill Gap Analyzer"
+  version: "1.0.0"
+  environment: "development"
+
+# Database Configuration
+database:
+  provider: "supabase"
+  host: "${DB_HOST}"
+  port: ${DB_PORT}
+  name: "${DB_NAME}"
+  connection_pool_size: 10
+  timeout: 30
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Scraping Configuration
+scraping:
+  max_retries: 3
+  timeout: 30
+  user_agent: "JobMarketAnalyzer/1.0"
+  job_boards:
+    - name: "linkedin"
+      enabled: false
+    - name: "indeed"
+      enabled: false
+  fallback_dataset: true
+  max_jobs_per_run: 500
+  output_dir: "data/raw"
+
+# NLP Configuration
+nlp:
+  spacy_model: "en_core_web_sm"
+  skill_dictionary_path: "nlp/skill_dictionary.json"
+  min_confidence: 0.7
+  extraction_method: "hybrid"
+
+# Spark Configuration
+spark:
+  master: "${SPARK_MASTER:-local[*]}"
+  app_name: "${SPARK_APP_NAME:-JobMarketSkillAnalyzer}"
+  executor_memory: "2g"
+  driver_memory: "2g"
+  log_level: "WARN"
+  input_path: "data/raw/jobs.csv"
+  output_path: "data/processed"
+
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+  cors_origins:
+    - "http://localhost:8501"
+    - "http://localhost:3000"
+  max_upload_size: 10485760
+
+# Frontend Configuration
+frontend:
+  title: "Job Market Skill Gap Analyzer"
+  port: 8501
+  theme: "light"
+  max_skills_display: 50
+
+# Analysis Configuration
+analysis:
+  top_skills_count: 20
+  skill_gap_threshold: 0.1
+  demand_categories:
+    high: 0.3
+    medium: 0.1
+    low: 0.0
